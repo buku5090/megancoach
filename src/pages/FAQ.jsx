@@ -1,18 +1,21 @@
 import { useState } from "react";
-
-const faqs = [
-  { q: "Ce este Megancoach?", a: "O platformă pentru coaching & blog, cu resurse și articole." },
-  { q: "Aveți sesiuni 1:1?", a: "Da, în funcție de disponibilitate. Detalii pe pagina de servicii." },
-  { q: "Cum mă abonez la newsletter?", a: "Găsești formularul în footer sau pe pagina Blog." },
-  { q: "Pot propune subiecte de articole?", a: "Sigur! Trimite-ne un mesaj din pagina Contact." },
-];
+import { useI18n } from "../i18n";
 
 export default function FAQ() {
+  const { t } = useI18n();
+
+  const faqs = [
+    { q: t("faq_item_1_q"), a: t("faq_item_1_a") },
+    { q: t("faq_item_2_q"), a: t("faq_item_2_a") },
+    { q: t("faq_item_3_q"), a: t("faq_item_3_a") },
+    { q: t("faq_item_4_q"), a: t("faq_item_4_a") },
+  ];
+
   return (
     <div style={styles.wrap}>
       <div style={styles.container}>
-        <h1 style={styles.title}>Întrebări frecvente</h1>
-        <p style={styles.subtitle}>Răspunsuri scurte la întrebările populare.</p>
+        <h1 style={styles.title}>{t("faq_title")}</h1>
+        <p style={styles.subtitle}>{t("faq_subtitle")}</p>
         <div style={styles.list}>
           {faqs.map((item, i) => <Accordion key={i} {...item} />)}
         </div>

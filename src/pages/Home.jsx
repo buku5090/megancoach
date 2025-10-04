@@ -1,6 +1,6 @@
 import Hero from "../components/Hero";
 import Reasons from "../components/Reasons";
-import WorkWithMe from "../components/WorkWithMe";
+import Programe from "../pages/Programe";
 import Testimonials from "../components/Testimonials";
 import AboutTeaser from "../components/AboutTeaser";
 
@@ -10,7 +10,7 @@ export default function Home() {
       <Hero />           {/* MiniCourse e deja în Hero */}
       <AboutTeaser />
       <Reasons />
-      <WorkWithMe />
+      <Programe />
       <Testimonials />
     </main>
   );

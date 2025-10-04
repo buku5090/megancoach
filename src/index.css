@@ -1,68 +1,114 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-/* 
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    /* brand & accente */
+    --brand: 176 116 58;       /* #b0743a - accentul tău „cupru” */
+    --accent: 191 238 227;     /* #bfeee3 - butoane CTA pale */
+    --cream: 246 239 230;      /* #f6efe6 - fundal crem */
+    --ink: 26 26 26;           /* #1a1a1a - text primar dark */
+    --muted: 42 42 42;         /* #2a2a2a - text secundar */
+    --bg: 255 255 255;         /* alb */
+
+    /* rad/shadows */
+    --radius-md: 12px;
+    --radius-lg: 24px;
+    --radius-xl: 36px;
+    --shadow-sm: 0 4px 10px rgba(0,0,0,.06);
+    --shadow-md: 0 10px 30px rgba(0,0,0,.10);
   }
-  a:hover {
-    color: #747bff;
+
+  html {scroll-behavior: smooth;}
+  body {
+    color: rgb(var(--ink));
+    background: rgb(var(--bg));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  button {
-    background-color: #f9f9f9;
+
+  ::selection {
+    background: rgba(var(--brand), .18);
   }
-} */
+}
+
+@layer components {
+  /* Butoane */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    @apply disabled:opacity-60 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    background: rgb(var(--ink));
+    color: white;
+    @apply hover:opacity-90 focus-visible:ring-[rgba(176,116,58,.35)] ring-offset-white;
+  }
+  .btn-ghost {
+    @apply border border-black/10 hover:bg-black/5;
+    color: rgb(var(--ink));
+  }
+  .btn-accent {
+    background: rgb(var(--accent));
+    color: rgb(var(--ink));
+    @apply hover:brightness-95;
+  }
+
+  /* Inputs */
+  .input {
+    @apply h-12 w-full rounded-full border border-neutral-200 bg-white px-5 text-[15px] text-neutral-800 placeholder-neutral-400 outline-none transition;
+    @apply focus:border-[rgba(99,102,241,.5)] focus:ring-2 focus:ring-indigo-100;
+  }
+  .textarea {
+    @apply min-h-[120px] w-full rounded-2xl border border-neutral-200 bg-white px-5 py-3 text-[15px] text-neutral-800 placeholder-neutral-400 outline-none transition;
+    @apply focus:border-[rgba(99,102,241,.5)] focus:ring-2 focus:ring-indigo-100;
+  }
+
+  /* Card */
+  .card {
+    @apply rounded-2xl border border-black/5 bg-white shadow-sm;
+  }
+  .card-dark {
+    @apply rounded-2xl border border-white/10 bg-neutral-900 shadow-sm;
+  }
+
+  /* Chip / tag */
+  .chip {
+    @apply text-xs px-2 py-1 rounded-full bg-neutral-100 border border-black/10;
+  }
+  .chip-dark {
+    @apply text-xs px-2 py-1 rounded-full bg-neutral-800 border border-white/10 text-white/80;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-3xl md:text-4xl font-semibold tracking-tight;
+  }
+  .section-sub {
+    @apply mt-2 text-neutral-600;
+  }
+
+  /* Nav link cu underline animat */
+  .nav-link {
+    @apply relative px-2 py-1 text-white/90 hover:text-white transition-colors;
+  }
+  .nav-link[data-active="true"] {
+    color: #b0743a;
+  }
+  .nav-link .underline {
+    @apply absolute left-0 -bottom-1 h-[2px] bg-[rgb(var(--brand))] transition-all;
+    width: 0; opacity: 0;
+  }
+  .nav-link[data-active="true"] .underline {
+    width: 100%; opacity: 1;
+  }
+
+  /* Util UI pe care le folosești des */
+  .surface-cream {
+    background: rgb(var(--cream));
+  }
+  .surface-blur {
+    @apply backdrop-blur supports-[backdrop-filter]:bg-black/60;
+  }
+}

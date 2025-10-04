@@ -1,0 +1,25 @@
+{
+  "subscribers": [
+    {
+      "email": "test@gmail.com",
+      "name": "",
+      "status": "active",
+      "subscribedAt": "2025-10-01T17:26:48.315Z",
+      "updatedAt": "2025-10-01T17:26:48.316Z"
+    },
+    {
+      "email": "s.bogdan.bucurie@gmail.com",
+      "name": "",
+      "status": "active",
+      "subscribedAt": "2025-10-01T17:27:01.966Z",
+      "updatedAt": "2025-10-01T17:27:01.966Z"
+    },
+    {
+      "email": "paulaghcoach@gmail.com",
+      "name": "",
+      "status": "active",
+      "subscribedAt": "2025-10-01T17:31:26.307Z",
+      "updatedAt": "2025-10-01T17:31:26.310Z"
+    }
+  ]
+}

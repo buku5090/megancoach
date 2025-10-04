@@ -1,50 +1,51 @@
 import TestimonialCard from "./TestimonialCard";
-
-const items = [
-  {
-    name: "Ty T.",
-    location: "Wales, UK",
-    quote:
-      "Megan draws from a wealth of philosophical concepts, established science, and esoteric practices to help me navigate both my internal world and in the shared world...",
-    img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1800&auto=format&fit=crop",
-    overlay: "light",
-    objectPos: "50% 25%",
-    stars: 5,
-  },
-  {
-    name: "Maya F.",
-    location: "San Diego, CA",
-    quote:
-      "Megan has committed herself to going deep into understanding embodiment to help guide those of us who need it, with an honest, generous and intelligent spirit...",
-    img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1800&auto=format&fit=crop",
-    overlay: "dark",
-    objectPos: "50% 35%",
-    stars: 5,
-  },
-  {
-    name: "Kelly C.",
-    location: "Tacoma, WA",
-    quote:
-      "After reading about embodiment coaching, I knew this was what I was looking for. I needed help working through old patterns by listening to my body’s innate wisdom...",
-    img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1800&auto=format&fit=crop",
-    overlay: "light",
-    objectPos: "50% 30%",
-    stars: 5,
-  },
-];
+import { useI18n } from "../i18n";
 
 export default function Testimonials() {
+  const { t } = useI18n();
+
+  const items = [
+    {
+      name: t("testi_1_name"),
+      location: t("testi_1_location"),
+      quote: t("testi_1_quote"),
+      bgClass: "bg-gradient-to-br from-amber-300/20 via-rose-400/20 to-fuchsia-500/25",
+      stars: 5,
+    },
+    {
+      name: t("testi_2_name"),
+      location: t("testi_2_location"),
+      quote: t("testi_2_quote"),
+      bgClass: "bg-gradient-to-br from-cyan-300/20 via-sky-500/20 to-indigo-600/25",
+      stars: 5,
+    },
+    {
+      name: t("testi_3_name"),
+      location: t("testi_3_location"),
+      quote: t("testi_3_quote"),
+      bgClass: "bg-gradient-to-br from-emerald-300/20 via-teal-400/20 to-green-600/25",
+      stars: 5,
+    },
+    {
+      name: t("testi_4_name"),
+      location: t("testi_4_location"),
+      quote: t("testi_4_quote"),
+      bgClass: "bg-gradient-to-br from-purple-300/20 via-violet-500/20 to-indigo-700/25",
+      stars: 5,
+    },
+  ];
+
   return (
     <section className="bg-black">
-      <div className="grid md:grid-cols-2 lg:grid-cols-3">
-        {items.map((t, i) => (
+      <div className="grid auto-rows-fr md:grid-cols-1 lg:grid-cols-4">
+        {items.map((it, i) => (
           <TestimonialCard
             key={i}
-            image={t.img}          // <-- rename: img -> image
-            name={t.name}
-            location={t.location}
-            quote={t.quote}
-            rating={t.stars}       // <-- rename: stars -> rating
+            name={it.name}
+            location={it.location}
+            quote={it.quote}
+            rating={it.stars}
+            bgClass={it.bgClass}
           />
         ))}
       </div>

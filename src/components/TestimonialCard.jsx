@@ -1,31 +1,46 @@
-export default function TestimonialCard({ image, name, location, quote, rating }) {
+export default function TestimonialCard({
+  image,
+  name,
+  location,
+  quote,
+  rating = 5,
+  bgClass,
+}) {
   return (
-    <div className="relative w-full h-[500px] flex items-center justify-center">
-      {/* Imaginea de fundal */}
-      <img
-        src={image || "https://via.placeholder.com/800x500?text=Placeholder"}
-        alt={name}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+    <article className="relative overflow-hidden h-full">
+      {/* fundal: gradient / culoare */}
+      {image ? (
+        <img
+          src={image}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+      ) : (
+        <div className={`absolute inset-0 ${bgClass || "bg-neutral-800"}`} />
+      )}
 
-      {/* Overlay pentru contrast */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+      {/* overlay pt. contrast */}
+      <div className="absolute inset-0 bg-black/35" />
 
-      {/* Conținut testimonial */}
-      <div className="relative z-10 text-center text-white px-6 flex flex-col justify-between h-full py-12">
+      {/* conținut centrat și „puțin mai sus” */}
+      <div className="relative z-10 h-full flex flex-col items-center justify-between
+                      text-center gap-4 px-8 pt-12 pb-10">
+        <p className="text-base leading-relaxed text-white/90 max-w-prose">
+          “{quote}”
+        </p>
+
         <div>
-          <span className="text-5xl">“</span>
-          <h3 className="font-bold text-xl">{name} — {location}</h3>
-          <p className="mt-4 text-lg">{quote}</p>
-        </div>
+          <div className="mt-4">
+            <div className="font-semibold text-white">{name}</div>
+            <div className="text-xs text-white/70">{location}</div>
+          </div>
 
-        {/* Stelele */}
-        <div className="flex justify-center">
-          {Array(rating).fill(0).map((_, i) => (
-            <span key={i} className="text-teal-300 text-2xl">★</span>
-          ))}
+          <div aria-label={`${rating} ${"stars"}`} className="text-yellow-400 mt-1">
+            {"★".repeat(Math.round(rating))}
+          </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
